@@ -148,7 +148,7 @@ So, in the post we iterated through a design to convert Java-style methods to pu
 
 You can take a look at the complete code from this post on this [scalafiddle](https://scalafiddle.io/sf/xADqbDO/0).
 
-Also note that we can use [this](https://tpolecat.github.io/2015/07/30/infer.html) trick to have a neater type inference. You will only have to define your error type, not your result type (I definitely recommend doing this).
+Also note that we can use [this](https://tpolecat.github.io/2015/07/30/infer.html) trick to have a neater type inference. You will only have to specify your error type, not your result type (I definitely recommend doing this).
 
 Remark 1 (*):
 
