@@ -6,7 +6,7 @@ categories: [ApplicativeError, Cats]
 
 Let's take a look on some ways to convert Java-style methods (returning nulls and throwing exceptions) as pure Scala values.
 
-At the end of the post I hope to define a function which you might find much nicer to work with than some more obvious options. I will do this by using the ApplicativeError abstraction from Cats.
+At the end of the post I hope to define a function which you might find nicer to work with than some of the more obvious options. I will do this by using the ApplicativeError abstraction from Cats.
 
 Imagine this contrived method def, the main point being certain inputs can return nulls and others might throw exceptions:
 
