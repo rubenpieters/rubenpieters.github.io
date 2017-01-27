@@ -150,7 +150,7 @@ You can take a look at the complete code from this post on this [scalafiddle](ht
 
 Also note that we can use [this](https://tpolecat.github.io/2015/07/30/infer.html) trick to have a neater type inference. You will only have to specify your error type, not your result type (I definitely recommend doing this).
 
-Remark 1 (*):
+#### Remark 1 (*):
 
 There is no instance for `MonadError[Option, Throwable]`, only for `MonadError[Option, Unit]`
 
