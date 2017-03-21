@@ -67,7 +67,7 @@ We're also gonna be using the [`Aux` pattern](http://stackoverflow.com/questions
 
 ```scala
 object TPrinter {
-   type Aux[A <: F, X, Out0] = TPrinter[A, X] { type Out = Out0 }
+  type Aux[A <: F, X, Out0] = TPrinter[A, X] { type Out = Out0 }
 }
 ```
 
@@ -102,9 +102,9 @@ Implementing this is quite straightforward. The `print` function will execute th
  
 ```scala
 implicit def tPrinterLit[X]: TPrinter.Aux[Lit, X, X] = new TPrinter[Lit, X] {
-   type Out = X
+  type Out = X
 
-   override def print(f: Lit, k: (String) => X): X = k(f.str)
+  override def print(f: Lit, k: (String) => X): X = k(f.str)
 }
 ```
  
@@ -113,12 +113,11 @@ When we have `A` = `Val[V]` then `Out` = `V => X`. A value adds another typed pa
 This is also fairly straightforward. We return a function which takes the typed parameter and when called will use the given `printer` to print this parameter as a `String`.
 
 ```scala
-implicit def tPrinterVal[X, A]: TPrinter.Aux[Val[A], X, A => X] = new 
-TPrinter[Val[A], X] {
-   type Out = A => X
+implicit def tPrinterVal[X, A]: TPrinter.Aux[Val[A], X, A => X] = new TPrinter[Val[A], X] {
+  type Out = A => X
 
-   override def print(f: Val[A], k: (String) => X): A => X =
-   (x: A) => k(f.printer(x))
+  override def print(f: Val[A], k: (String) => X): A => X =
+    (x: A) => k(f.printer(x))
 }
 ```
 
@@ -139,9 +138,9 @@ Let's write out the first attempt. We can see the type checker isn't quite happy
 ```scala
 // WARNING: doesn't compile, for fixed version see below
 implicit def tPrinterCmp[X, F1 <: F, F2 <: F, XF1, XF2, OF1, OF2, OUT]
-(implicit printerF1: TPrinter.Aux[F1, XF1, OF1]
-, printerF2: TPrinter.Aux[F2, XF2, OF2]
-): TPrinter.Aux[Cmp[F1, F2], X, OUT] = new TPrinter[Cmp[F1, F2], X] {
+  ( implicit printerF1: TPrinter.Aux[F1, XF1, OF1]
+  , printerF2: TPrinter.Aux[F2, XF2, OF2]
+  ): TPrinter.Aux[Cmp[F1, F2], X, OUT] = new TPrinter[Cmp[F1, F2], X] {
   type Out = OUT
 
   override def print(f: Cmp[F1, F2], k: (String) => X): OUT = {
@@ -179,18 +178,18 @@ Doing all the substitutions gives us:
 
 ```scala
 implicit def tPrinterCmp[X, F1 <: F, F2 <: F, OF1, OF2]
-   (implicit printerF1: TPrinter.Aux[F1, OF2, OF1]
-    , printerF2: TPrinter.Aux[F2, X, OF2]
-   ): TPrinter.Aux[Cmp[F1, F2], X, OF1] = new TPrinter[Cmp[F1, F2], X] {
-     type Out = OF1
+  ( implicit printerF1: TPrinter.Aux[F1, OF2, OF1]
+  , printerF2: TPrinter.Aux[F2, X, OF2]
+  ): TPrinter.Aux[Cmp[F1, F2], X, OF1] = new TPrinter[Cmp[F1, F2], X] {
+    type Out = OF1
 
-     override def print(f: Cmp[F1, F2], k: (String) => X): OF1 = {
-       def endStr(s1: String, s2: String): X = k(s1 + s2)
-       def print2(s1: String) = printerF2.print(f.f2, s2 => endStr(s1, s2))
-       def print1 = printerF1.print(f.f1, s1 => print2(s1))
+    override def print(f: Cmp[F1, F2], k: (String) => X): OF1 = {
+      def endStr(s1: String, s2: String): X = k(s1 + s2)
+      def print2(s1: String) = printerF2.print(f.f2, s2 => endStr(s1, s2))
+      def print1 = printerF1.print(f.f1, s1 => print2(s1))
 
-       print1
-     }
+      print1
+    }
 }
 ```
 
@@ -201,18 +200,18 @@ And lo and behold! We have implemented our very own typed printing function.
 How can we use our function? Well that's easy, like this:
 
 ```scala
-println(implicitly[TPrinter.Aux[Cmp[Cmp[Lit, Val[String]], Cmp[Lit, 
-Val[Int]]], String, String => Int => String]].print(nameAge, identity)("ruben")(23))
+println(
+  implicitly[TPrinter.Aux[
+    Cmp[Cmp[Lit, Val[String]], Cmp[Lit, Val[Int]]], String, String => Int => String]
+  ].print(nameAge, identity)("ruben")(23))
 ```
 
 Not convinced on the usability? Okay let's create an `implicit class` for some nicer ops
 
 ```scala
 implicit class printerOps[A <: F](f: A) {
-   def print[X, O](k: String => X)(implicit tp: TPrinter.Aux[A, X, O]): 
-O = tp.print(f, k)
-   def sprintf[O](implicit tp: TPrinter.Aux[A, String, O]): O = 
-tp.print(f, identity)
+   def print[X, O](k: String => X)(implicit tp: TPrinter.Aux[A, X, O]): O = tp.print(f, k)
+   def sprintf[O](implicit tp: TPrinter.Aux[A, String, O]): O = tp.print(f, identity)
 }
 ```
 
