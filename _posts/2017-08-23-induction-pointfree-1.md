@@ -103,7 +103,7 @@ coproduct _ g (Right b) = g b
 
 To prove our example shown in the first section we actually only need to work with one functor, namely the one for which natural numbers are the initial algebra (with $[\mathit{zero}, \mathit{succ}]$ as action). This functor is $1 + X$, which instantiated as a Haskell `Functor` is `Either () a`.
 
-Our initial algebra is then $\langle\mathbb{N}, [\mathit{zero}, \mathit{succ}] : 1 + \mathbb{N} \rightarrow \mathbb{N} \rangle$. Initiality for the $1 + X$ functor means the following diagram holds (where $f$ is the **unique** morphism which makes the diagram commute):
+Our initial algebra is then $\langle\mathbb{N}, [\mathit{zero}, \mathit{succ}] : 1 + \mathbb{N} \rightarrow \mathbb{N} \rangle$. Initiality for the $1 + X$ functor means the following diagram holds for any algebra $\langle B, [\phi_1, \phi_2] : 1 + B \rightarrow B \rangle$ (where $f$ is the **unique** morphism which makes the diagram commute):
 
 $$
 \begin{CD}
