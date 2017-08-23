@@ -6,8 +6,12 @@
         <meta charset="utf-8">
         <title>{{ page.title }}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{site.baseurl}}/css/syntax.css">
-  <link rel="stylesheet" href="{{site.baseurl}}/css/main.css">
+        <link rel="stylesheet" href="{{site.baseurl}}/css/syntax.css">
+		<link rel="stylesheet" href="{{site.baseurl}}/css/main.css">
+  
+		{% if page.use_math %}
+			{% include mathjax_support %}
+		{% endif %}
     </head>
     <body>
 
