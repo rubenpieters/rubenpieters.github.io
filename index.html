@@ -11,8 +11,9 @@ layout: default
     <li>
       <a href="{{ post.url }}">{{ post.date | date_to_long_string }} {{ post.title }}</a>
 		{% for cat in post.categories %}
-		{{ cat }}
 		{% endfor %}
     </li>
   {% endfor %}
 </ul>
+
+<a href="https://rubenpieters.github.io/feed.xml" class="feed"></a>

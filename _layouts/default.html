@@ -6,6 +6,7 @@
         <meta charset="utf-8">
         <title>{{ page.title }}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
         <link rel="stylesheet" href="{{site.baseurl}}/css/syntax.css">
 		<link rel="stylesheet" href="{{site.baseurl}}/css/main.css">
 		
@@ -14,12 +15,28 @@
 		{% if page.use_math %}
 			{% include mathjax_support %}
 		{% endif %}
+        
     </head>
     <body>
 
+	    <ul class="navhead">
+			<li id="navroot" class="navelem"><a href="/">Blog</a></li>
+			<li id="navacademic" class="navelem"><a href="/academic.html">Academic</a></li>
+			<li id="navprojects" class="navelem"><a href="/projects.html">Projects</a></li>
+        </ul>
+	   
         {{ content }}
 		
-        <a href="https://rubenpieters.github.io/feed.xml" class="feed"></a>
+		<script>
+		    const path = window.location.pathname;
+			if (path === '/') {
+			  document.getElementById('navroot').classList.add('navactive');
+			} else if (path.startsWith('/academic')) {
+			  document.getElementById('navacademic').classList.add('navactive');
+			} else if (path.startsWith('/projects')) {
+			  document.getElementById('navprojects').classList.add('navactive');
+			}			
+		</script>
     </body>
 	<footer>
         <div class="container">
