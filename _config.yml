@@ -1,7 +1,7 @@
 future: true
-github: [metadata]
+repository: rubenpieters/rubenpieters.github.io
 markdown: kramdown
-gems:
+plugins:
   - jekyll-feed
 author: rubenpieters
 url: rubenpieters.github.io
