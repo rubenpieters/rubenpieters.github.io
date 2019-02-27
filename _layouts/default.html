@@ -22,25 +22,43 @@
 	    <ul class="navhead">
 			<li id="navroot" class="navelem"><a href="/">Blog</a></li>
 			<li id="navacademic" class="navelem"><a href="/academic.html">Academic</a></li>
-			<li id="navprojects" class="navelem"><a href="/projects.html">Projects</a></li>
+			<li id="navprojects" class="navelem"><a href="/resume.html">Resume</a></li>
         </ul>
 	   
         {{ content }}
 		
 		<script>
+			// navbar script
 		    const path = window.location.pathname;
 			if (path === '/') {
 			  document.getElementById('navroot').classList.add('navactive');
 			} else if (path.startsWith('/academic')) {
 			  document.getElementById('navacademic').classList.add('navactive');
-			} else if (path.startsWith('/projects')) {
+			} else if (path.startsWith('/resume')) {
 			  document.getElementById('navprojects').classList.add('navactive');
-			}			
+			}
+			
+			// collapsible elements script
+			let coll = document.getElementsByClassName("collapsible");
+
+			for (let i = 0; i < coll.length; i++) {
+			  coll[i].addEventListener("click", function() {
+				this.classList.toggle("active");
+				const content = this.parentElement.nextElementSibling;
+				console.log(content);
+				console.log(content.style);
+				if (content.style.display === "block") {
+				  content.style.display = "none";
+				} else {
+				  content.style.display = "block";
+				}
+			  });
+			}
 		</script>
     </body>
 	<footer>
         <div class="container">
-		  <p class="copyright">Copyright © Ruben Pieters 2017-2019. All Rights Reserved.</p>
+		  <p class="copyright">Copyright © Ruben Pieters 2017-2019. All Rights Reserved. Site theme based on <a href="https://github.com/sharu725/hagura">hagura</a>.</p>
         </div>
 	</footer>
 </html>
