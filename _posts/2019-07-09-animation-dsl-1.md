@@ -32,7 +32,7 @@ basicBoxAnim = basic (For 0.5) (sprites . box . x) (To 50)
 
 This results in the following animation. Obviously, we are still missing some code to actually create these animations, but this gives an idea of what we are working towards.
 
-<center><img src="{{ site.url }}/assets/animation-dsl-1/basic.gif"></center>
+<center><img src="{{ '/assets/animation-dsl-1/basic.gif' | relative_url }}"></center>
 
 ## Sequential and Parallel Animations
 
@@ -49,7 +49,7 @@ seqBoxAnim = seq
   ]
 ```
 
-<center><img src="{{ site.url }}/assets/animation-dsl-1/seq.gif"></center>
+<center><img src="{{ '/assets/animation-dsl-1/seq.gif' | relative_url }}"></center>
 
 We can also compose animations in parallel with the `par` combinator. For example, to create an animation of a box moving diagonally, we compose an animation of increasing x and increasing y in parallel. The code and visual are given below.
 
@@ -60,7 +60,7 @@ parBoxAnim = par
   ]
 ```
 
-<center><img src="{{ site.url }}/assets/animation-dsl-1/par.gif"></center>
+<center><img src="{{ '/assets/animation-dsl-1/par.gif' | relative_url }}"></center>
 
 # Effect DSL
 
@@ -415,7 +415,7 @@ fancyBoxAnim = let
   ]
 ```
 
-<center><img src="{{ site.url }}/assets/animation-dsl-1/fancy.gif"></center>
+<center><img src="{{ '/assets/animation-dsl-1/fancy.gif' | relative_url }}"></center>
 
 # Create Effect
 
@@ -480,7 +480,7 @@ createBoxAnim = do
 
 This results in the animation below, each new box appearing happens after a key is pressed.
 
-<center><img src="{{ site.url }}/assets/animation-dsl-1/create.gif"></center>
+<center><img src="{{ '/assets/animation-dsl-1/create.gif' | relative_url }}"></center>
 
 # Conclusion
 
