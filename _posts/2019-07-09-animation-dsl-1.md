@@ -488,4 +488,4 @@ We looked at building an animation DSL from the ground up, starting from a tradi
 
 One main future direction I want to explore is converting it into a modular effects approach. This allows an end user to mix and match whatever basic effects they want in the DSL. For example, an effect they might want to add is playing sounds during an animation, or maybe hook into game engine primitives such as certain shaders (de)activating. These additional effects can be dependent on how the user wants to use the DSL, and so a modular approach seems appropriate.
 
-Feel free to post any interesting ideas or feedback in the accompanying [reddit thread](LINK TODO)!
+Feel free to post any interesting ideas or feedback in the accompanying [reddit thread](https://www.reddit.com/r/haskell/comments/cb1qs6/animation_dsl_with_effect_handlers)!
