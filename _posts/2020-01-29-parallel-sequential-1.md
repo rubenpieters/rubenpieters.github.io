@@ -154,7 +154,7 @@ I am not the only one to come up with this idea of course. I could for example f
 
 In conclusion, the main point I want to make is that I believe that the callback-style approach to describe animations does not seem like a good interface for animations. I argue this on the fact that it is not conducive to simple semantics of describing timelines, and by themselves the `onStart`/`onComplete` operators are less expressive than the `parallel`/`sequential` operators.
 
-Have you ever used an animation library and felt something was off? Do you think of animations in terms of timelines? Or maybe you are a happy user of the callback-style and want to convince me of your ways? Feel free to discuss in the [accompanying reddit thread](TODO)! 
+Have you ever used an animation library and felt something was off? Do you think of animations in terms of timelines? Or maybe you are a happy user of the callback-style and want to convince me of your ways? Feel free to discuss in the [accompanying reddit thread](https://www.reddit.com/r/programming/comments/evt43d/parallelsequential_versus_onstartoncomplete)! 
 
 # Appendix A
 
